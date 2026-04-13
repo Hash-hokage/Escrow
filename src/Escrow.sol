@@ -31,9 +31,7 @@ contract Escrow {
     /*//////////////////////////////////////////////////////////////
                                  EVENTS
     //////////////////////////////////////////////////////////////*/
-    event EscrowCreated(
-        uint256 indexed id, address indexed buyer, address indexed seller, uint256 amount, uint256 deadline
-    );
+   event EscrowCreated(uint256 indexed id, address buyer, address seller, address arbitrator, uint256 amount, uint256 deadline);
     event Deposited(uint256 indexed id, address indexed buyer, uint256 amount);
     event Released(uint256 indexed id, address indexed seller, uint256 amount);
     event Refunded(uint256 indexed id, address indexed buyer, uint256 amount);
@@ -67,23 +65,25 @@ contract Escrow {
                                FUNCTIONS
     //////////////////////////////////////////////////////////////*/
 
-    function createEscrow(address _seller, address _buyer, uint256 _deadline) external payable {
+    function createEscrow(address _seller, address _arbitrator, uint256 _deadline) external payable {
         require(msg.value > 0, "amount must be greater than 0");
-        require(_seller != address(0) && _buyer != address(0), "invalid address");
-        require(_seller != _buyer, "seller and buyer cannot be the same");
+        require(_seller != address(0), "invalid address");
+        require(_seller != msg.sender, "seller and buyer cannot be the same");
+        require(_deadline > 0, "deadline must be greater than 0");
+        require(_arbitrator != address(0), "arbitrator cannot be the zero address");
 
         uint256 id = escrowCount++;
         escrows[id] = Transaction({
             id: id,
-            buyer: _buyer,
+            buyer: msg.sender,
             seller: _seller,
-            arbitrator: address(0),
+            arbitrator: _arbitrator,
             amount: msg.value,
             deadline: block.timestamp + _deadline,
             currentState: State.Awaiting
         });
 
-        emit EscrowCreated(id, _buyer, _seller, msg.value, escrows[id].deadline);
+        emit EscrowCreated(id, msg.sender, _seller, _arbitrator, msg.value, escrows[id].deadline);
     }
 
     function release(uint256 id) external onlyBuyer(id) inState(id, State.Funded) {
