@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================
+   Ethereal Ledger — Design System Globals
+   ======================================== */
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #121316;
+  color: #e3e2e6;
+}
+
+/* Label / Monospace font utility */
+.label-font {
+  font-family: "Space Grotesk", monospace;
+}
+
+/* Glassmorphism card */
+.glass-card {
+  background: rgba(52, 53, 56, 0.4);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+}
+
+/* Glass panel variant (Seller page) */
+.glass-panel {
+  background: rgba(52, 53, 56, 0.4);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+}
+
+/* Signature gradient (CTA buttons) */
+.signature-gradient {
+  background: linear-gradient(135deg, #afc6ff 0%, #528dff 100%);
+}
+
+/* Arbitrator resolve button styles */
+.btn-resolve-primary {
+  background: linear-gradient(135deg, #343538 0%, #1e2c4d 100%);
+}
+.btn-resolve-primary:hover {
+  background: linear-gradient(135deg, #3d3e42 0%, #293d6b 100%);
+}
+.btn-resolve-secondary {
+  background: linear-gradient(135deg, #343538 0%, #143829 100%);
+}
+.btn-resolve-secondary:hover {
+  background: linear-gradient(135deg, #3d3e42 0%, #1a4d38 100%);
+}
+
+/* Active dot glow (Arbitrator) */
+.active-dot {
+  box-shadow: 0 0 12px #ff5636;
+}
+
+/* Mono text utility (Seller page) */
+.mono-text {
+  font-family: "Space Grotesk", monospace;
+}
+
+/* Selection colors */
+::selection {
+  background-color: #528dff;
+  color: #00275f;
+}
