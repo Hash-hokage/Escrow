@@ -31,7 +31,9 @@ contract Escrow {
     /*//////////////////////////////////////////////////////////////
                                  EVENTS
     //////////////////////////////////////////////////////////////*/
-   event EscrowCreated(uint256 indexed id, address buyer, address seller, address arbitrator, uint256 amount, uint256 deadline);
+    event EscrowCreated(
+        uint256 indexed id, address buyer, address seller, address arbitrator, uint256 amount, uint256 deadline
+    );
     event Deposited(uint256 indexed id, address indexed buyer, uint256 amount);
     event Released(uint256 indexed id, address indexed seller, uint256 amount);
     event Refunded(uint256 indexed id, address indexed buyer, uint256 amount);

@@ -7,7 +7,7 @@ import {Escrow} from "../src/Escrow.sol";
 import {console} from "forge-std/Test.sol";
 
 contract DeployEscrow is Script {
-    function run() external returns(Escrow) {
+    function run() external returns (Escrow) {
         vm.startBroadcast();
         Escrow escrow = new Escrow();
         vm.stopBroadcast();

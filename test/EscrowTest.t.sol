@@ -154,7 +154,7 @@ contract EscrowTest is Test {
         vm.prank(buyer);
         escrow.release(id);
 
-        (, , , , , , Escrow.State state) = escrow.escrows(id);
+        (,,,,,, Escrow.State state) = escrow.escrows(id);
         assertEq(uint256(state), uint256(Escrow.State.Complete));
         assertEq(seller.balance, sellerBalanceBefore + AMOUNT);
     }
@@ -222,7 +222,7 @@ contract EscrowTest is Test {
         vm.prank(buyer);
         escrow.dispute(id);
 
-        (, , , , , , Escrow.State state) = escrow.escrows(id);
+        (,,,,,, Escrow.State state) = escrow.escrows(id);
         assertEq(uint256(state), uint256(Escrow.State.Disputed));
     }
 
@@ -232,7 +232,7 @@ contract EscrowTest is Test {
         vm.prank(seller);
         escrow.dispute(id);
 
-        (, , , , , , Escrow.State state) = escrow.escrows(id);
+        (,,,,,, Escrow.State state) = escrow.escrows(id);
         assertEq(uint256(state), uint256(Escrow.State.Disputed));
     }
 
@@ -274,7 +274,7 @@ contract EscrowTest is Test {
         vm.prank(buyer);
         escrow.refund(id);
 
-        (, , , , , , Escrow.State state) = escrow.escrows(id);
+        (,,,,,, Escrow.State state) = escrow.escrows(id);
         assertEq(uint256(state), uint256(Escrow.State.Reimbursed));
         assertEq(buyer.balance, buyerBalanceBefore + AMOUNT);
     }
@@ -363,7 +363,7 @@ contract EscrowTest is Test {
         vm.prank(arbitrator);
         escrow.resolve(id, true);
 
-        (, , , , , , Escrow.State state) = escrow.escrows(id);
+        (,,,,,, Escrow.State state) = escrow.escrows(id);
         assertEq(uint256(state), uint256(Escrow.State.Reimbursed));
         assertEq(buyer.balance, buyerBalanceBefore + AMOUNT);
     }
@@ -376,7 +376,7 @@ contract EscrowTest is Test {
         vm.prank(arbitrator);
         escrow.resolve(id, false);
 
-        (, , , , , , Escrow.State state) = escrow.escrows(id);
+        (,,,,,, Escrow.State state) = escrow.escrows(id);
         assertEq(uint256(state), uint256(Escrow.State.Resolved));
         assertEq(seller.balance, sellerBalanceBefore + AMOUNT);
     }
