@@ -24,8 +24,8 @@ export default function CreateEscrowForm() {
       const amountWei = parseEther(formData.amount);
       
       await createEscrow(
-        formData.seller as \`0x\${string}\`,
-        formData.arbitrator as \`0x\${string}\`,
+        formData.seller as `0x${string}`,
+        formData.arbitrator as `0x${string}`,
         deadlineUnix,
         amountWei
       );
