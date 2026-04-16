@@ -44,13 +44,16 @@ export default function DashboardPage() {
   // Watch for new creations to auto-refresh
   useWatchContractEvent({
     address: contractAddress,
-    event: parseAbiItem(
-      "event EscrowCreated(uint256 indexed id, address buyer, address seller, address arbitrator, uint256 amount, uint256 deadline)"
-    ),
+    abi: [
+      parseAbiItem(
+        "event EscrowCreated(uint256 indexed id, address buyer, address seller, address arbitrator, uint256 amount, uint256 deadline)"
+      )
+    ],
+    eventName: "EscrowCreated",
     onLogs() {
-      refetch();
-    },
-  });
+      // ...
+    }
+  })
 
   return (
     <>
