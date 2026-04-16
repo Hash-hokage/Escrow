@@ -12,8 +12,8 @@ interface TrustProgressBarProps {
 }
 
 /**
- * Segmented progress bar used on Buyer and Dashboard pages.
- * Exact visual match to the "Network Health" and "Trust Progress" bars.
+ * Segmented progress bar — Electric Indigo neon glow on filled segments.
+ * Part of the Obsidian Protocol design system.
  */
 export default function TrustProgressBar({
   filled,
@@ -27,12 +27,12 @@ export default function TrustProgressBar({
       {(leftLabel || rightLabel) && (
         <div className="flex justify-between items-center mb-4">
           {leftLabel && (
-            <span className="text-xs font-bold tracking-[0.2em] text-outline uppercase">
+            <span className="text-xs font-bold tracking-[0.2em] text-text-tertiary uppercase">
               {leftLabel}
             </span>
           )}
           {rightLabel && (
-            <span className="text-xs font-bold font-label text-secondary">
+            <span className="text-xs font-bold font-label text-emerald">
               {rightLabel}
             </span>
           )}
@@ -42,10 +42,10 @@ export default function TrustProgressBar({
         {Array.from({ length: total }).map((_, i) => (
           <div
             key={i}
-            className={`flex-1 rounded-full ${
+            className={`flex-1 rounded-full transition-all duration-300 ${
               i < filled
-                ? "bg-primary shadow-[0_0_10px_rgba(175,198,255,0.4)]"
-                : "bg-surface-variant/30"
+                ? "bg-indigo shadow-[0_0_10px_rgba(79,70,229,0.5)]"
+                : "bg-vault-active/40"
             }`}
           />
         ))}

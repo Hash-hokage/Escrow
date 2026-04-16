@@ -44,25 +44,26 @@ export default function CreateEscrowForm() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-16 mb-24">
+    <div className="flex flex-col lg:flex-row gap-16 mb-26">
       {/* Left: Hero text */}
       <div className="lg:w-1/3">
-        <h1 className="text-6xl font-extrabold tracking-tighter mb-6 leading-tight">
-          Secure your <span className="text-primary">intent.</span>
+        <h1 className="text-6xl font-bold tracking-vault mb-6 leading-tight font-headline">
+          <span className="gradient-text">Secure your</span>{" "}
+          <span className="gradient-text-indigo">intent.</span>
         </h1>
-        <p className="text-on-surface-variant text-lg leading-relaxed">
+        <p className="text-text-secondary text-lg leading-relaxed">
           Initialize a high-fidelity smart contract escrow. Funds are locked in
           the ethereal ledger until conditions are met or an arbitrator
           intervenes.
         </p>
-        <div className="mt-12 p-6 bg-surface-container-low rounded-xl">
-          <div className="flex items-center gap-4 text-secondary mb-2">
-            <ShieldCheck size={24} />
-            <span className="font-bold tracking-tight">
+        <div className="mt-12 vault-card p-6">
+          <div className="flex items-center gap-4 text-emerald mb-2">
+            <ShieldCheck size={24} className="animate-breathe" />
+            <span className="font-bold tracking-vault text-text-primary">
               Triple-Locked Security
             </span>
           </div>
-          <p className="text-sm text-on-surface-variant opacity-80">
+          <p className="text-sm text-text-secondary leading-relaxed">
             Every transaction is immutable, verified by the network, and
             governed by your chosen arbitrator.
           </p>
@@ -71,14 +72,14 @@ export default function CreateEscrowForm() {
 
       {/* Right: Form */}
       <div className="lg:w-2/3">
-        <div className="glass-card p-10 rounded-[2rem] shadow-2xl relative overflow-hidden">
-          {/* Subtle background light effect */}
-          <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 blur-[100px] rounded-full" />
+        <div className="vault-card p-10 relative overflow-hidden">
+          {/* Subtle background atmospheric glow */}
+          <div className="absolute -top-24 -right-24 w-64 h-64 bg-indigo/8 blur-[100px] rounded-full pointer-events-none" />
 
           <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-2">
-                <label className="text-xs uppercase tracking-widest text-outline font-bold ml-1">
+              <div className="space-y-2.5">
+                <label className="text-[11px] uppercase tracking-widest text-text-tertiary font-semibold ml-1">
                   Seller Wallet Address
                 </label>
                 <input
@@ -89,11 +90,11 @@ export default function CreateEscrowForm() {
                   onChange={(e) =>
                     setFormData({ ...formData, seller: e.target.value })
                   }
-                  className="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-4 text-on-surface font-label focus:ring-1 focus:ring-primary/30 transition-all placeholder:text-outline-variant"
+                  className="vault-input"
                 />
               </div>
-              <div className="space-y-2">
-                <label className="text-xs uppercase tracking-widest text-outline font-bold ml-1">
+              <div className="space-y-2.5">
+                <label className="text-[11px] uppercase tracking-widest text-text-tertiary font-semibold ml-1">
                   Arbitrator Wallet Address
                 </label>
                 <input
@@ -104,14 +105,14 @@ export default function CreateEscrowForm() {
                   onChange={(e) =>
                     setFormData({ ...formData, arbitrator: e.target.value })
                   }
-                  className="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-4 text-on-surface font-label focus:ring-1 focus:ring-primary/30 transition-all placeholder:text-outline-variant"
+                  className="vault-input"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-2">
-                <label className="text-xs uppercase tracking-widest text-outline font-bold ml-1">
+              <div className="space-y-2.5">
+                <label className="text-[11px] uppercase tracking-widest text-text-tertiary font-semibold ml-1">
                   Escrow Deadline
                 </label>
                 <input
@@ -121,11 +122,11 @@ export default function CreateEscrowForm() {
                   onChange={(e) =>
                     setFormData({ ...formData, deadline: e.target.value })
                   }
-                  className="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-4 text-on-surface focus:ring-1 focus:ring-primary/30 transition-all [color-scheme:dark]"
+                  className="vault-input"
                 />
               </div>
-              <div className="space-y-2">
-                <label className="text-xs uppercase tracking-widest text-outline font-bold ml-1">
+              <div className="space-y-2.5">
+                <label className="text-[11px] uppercase tracking-widest text-text-tertiary font-semibold ml-1">
                   ETH Amount
                 </label>
                 <div className="relative">
@@ -138,9 +139,9 @@ export default function CreateEscrowForm() {
                     onChange={(e) =>
                       setFormData({ ...formData, amount: e.target.value })
                     }
-                    className="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-4 text-on-surface font-label focus:ring-1 focus:ring-primary/30 transition-all placeholder:text-outline-variant"
+                    className="vault-input pr-16"
                   />
-                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-primary font-bold font-label">
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-indigo font-bold font-label text-sm">
                     ETH
                   </span>
                 </div>
@@ -150,11 +151,11 @@ export default function CreateEscrowForm() {
             <button
               type="submit"
               disabled={isWritePending}
-              className="flex items-center justify-center gap-2 w-full signature-gradient text-on-primary-container text-xl font-extrabold py-6 rounded-2xl active:scale-95 transition-transform shadow-lg shadow-primary/20 disabled:opacity-50"
+              className="vault-btn vault-btn-primary w-full text-lg font-extrabold py-5 rounded-xl"
             >
               {isWritePending ? (
                 <>
-                  <Loader2 className="w-6 h-6 animate-spin" /> Pending Transaction...
+                  <Loader2 className="w-5 h-5 animate-spin" /> Pending Transaction...
                 </>
               ) : (
                 "Create Escrow"

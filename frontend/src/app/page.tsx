@@ -51,27 +51,28 @@ export default function DashboardPage() {
     ],
     eventName: "EscrowCreated",
     onLogs() {
-      // ...
+      // ..
     }
   })
 
   return (
     <>
-      <main className="pt-32 pb-20 px-8 max-w-screen-2xl mx-auto min-h-screen">
+      <main className="pt-40 pb-22 px-8 max-w-screen-2xl mx-auto min-h-screen">
         {/* Header Section */}
-        <section className="mb-24 flex flex-col items-start lg:grid lg:grid-cols-2 gap-12">
+        <section className="mb-26 flex flex-col items-start lg:grid lg:grid-cols-2 gap-16">
           <div className="space-y-6">
-            <h1 className="text-6xl font-extrabold tracking-tighter leading-[0.9] text-on-surface">
-              Ethereal <span className="text-primary">Ledger</span>
+            <h1 className="text-7xl font-bold tracking-vault leading-[0.9] font-headline">
+              <span className="gradient-text">Ethereal</span>{" "}
+              <span className="gradient-text-indigo">Ledger</span>
             </h1>
-            <p className="text-on-surface-variant text-xl max-w-lg leading-relaxed">
+            <p className="text-text-secondary text-xl max-w-lg leading-relaxed">
               Secure, trustless escrow on-chain for the modern digital economy.
             </p>
 
             {/* Search Bar */}
-            <form onSubmit={handleSearch} className="relative max-w-xl group mt-12">
-              <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none text-on-surface-variant group-focus-within:text-primary transition-colors">
-                <Search size={24} />
+            <form onSubmit={handleSearch} className="relative max-w-xl group mt-14">
+              <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none text-text-tertiary group-focus-within:text-indigo transition-colors duration-200">
+                <Search size={22} />
               </div>
               <input
                 id="escrow-search"
@@ -79,11 +80,11 @@ export default function DashboardPage() {
                 value={searchId}
                 onChange={(e) => setSearchId(e.target.value)}
                 placeholder="Look up escrow by ID..."
-                className="w-full bg-surface-container-high border-none rounded-xl py-5 pl-14 pr-32 focus:ring-2 focus:ring-primary/20 text-lg font-label placeholder:text-outline outline-none transition-all shadow-xl"
+                className="w-full vault-input py-5 pl-14 pr-32 !rounded-xl text-base !font-body"
               />
               <button
                 type="submit"
-                className="absolute right-2 top-2 bottom-2 px-6 bg-primary text-on-primary font-bold rounded-lg hover:bg-primary/90 transition-colors"
+                className="absolute right-2 top-2 bottom-2 vault-btn vault-btn-primary px-6 rounded-lg text-sm font-bold"
               >
                 Search
               </button>
@@ -93,19 +94,19 @@ export default function DashboardPage() {
 
         {/* Search Results */}
         {triggerSearchId !== undefined && (
-          <section className="mb-24 space-y-6">
-            <h2 className="text-2xl font-bold">
+          <section className="mb-26 space-y-6">
+            <h2 className="text-2xl font-bold font-headline text-text-primary">
               Search Result for ID: {triggerSearchId.toString()}
             </h2>
             {isSearchLoading ? (
-              <div className="flex items-center gap-2">
-                <Loader2 className="animate-spin text-primary" /> Loading...
+              <div className="flex items-center gap-3 text-text-secondary">
+                <Loader2 className="animate-spin text-indigo" /> Loading...
               </div>
             ) : searchedEscrow && searchedEscrow.buyer !== "0x0000000000000000000000000000000000000000" ? (
               <EscrowCard escrow={searchedEscrow} />
             ) : (
-              <p className="text-on-surface-variant">
-                No active escrow found with that ID or it hasn't been created yet.
+              <p className="text-text-secondary">
+                No active escrow found with that ID or it hasn&apos;t been created yet.
               </p>
             )}
           </section>
@@ -114,10 +115,10 @@ export default function DashboardPage() {
         {/* Active Escrows Section */}
         <section className="space-y-12">
           <div>
-            <h2 className="text-3xl font-bold tracking-tight text-on-surface">
+            <h2 className="text-3xl font-bold tracking-vault text-text-primary font-headline">
               Your Active Escrows
             </h2>
-            <p className="text-on-surface-variant mt-2">
+            <p className="text-text-secondary mt-3">
               {connectedAddress
                 ? "Smart contracts where you are the buyer, seller, or arbitrator."
                 : "Connect your wallet to view your active escrows."}
@@ -126,8 +127,8 @@ export default function DashboardPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {isUserEscrowsLoading ? (
-              <div className="col-span-full py-12 flex flex-col items-center justify-center text-on-surface-variant gap-4">
-                <Loader2 size={32} className="animate-spin" />
+              <div className="col-span-full py-16 flex flex-col items-center justify-center text-text-secondary gap-4">
+                <Loader2 size={32} className="animate-spin text-indigo" />
                 <p>Syncing ledger...</p>
               </div>
             ) : userEscrows.length > 0 ? (
@@ -135,7 +136,7 @@ export default function DashboardPage() {
                 <EscrowCard key={escrow.id.toString()} escrow={escrow} />
               ))
             ) : connectedAddress ? (
-              <div className="col-span-full p-12 bg-surface-container-low rounded-3xl text-center border border-outline/10 text-on-surface-variant">
+              <div className="col-span-full vault-card p-14 text-center text-text-secondary">
                 No active escrows found onchain for your wallet.
               </div>
             ) : null}
@@ -144,9 +145,6 @@ export default function DashboardPage() {
       </main>
 
       <BottomNav />
-
-      {/* Bottom Decorative */}
-      <div className="fixed bottom-0 left-0 w-full h-1/2 pointer-events-none -z-10 bg-gradient-to-t from-primary/5 to-transparent" />
     </>
   );
 }

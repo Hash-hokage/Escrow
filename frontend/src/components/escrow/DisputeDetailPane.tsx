@@ -41,22 +41,22 @@ export default function DisputeDetailPane({ dispute }: DisputeDetailPaneProps) {
   };
 
   return (
-    <div className="bg-surface-container-low rounded-3xl overflow-hidden relative shadow-2xl">
+    <div className="vault-card overflow-hidden relative">
       {/* Content Layer */}
       <div className="p-10 md:p-14 space-y-12 relative z-10">
         {/* Header Data */}
         <div className="flex flex-col md:flex-row justify-between gap-8">
           <div>
-            <h3 className="text-4xl font-bold tracking-tight mb-3">
+            <h3 className="text-4xl font-bold tracking-vault mb-3 gradient-text font-headline">
               Locked Engagement
             </h3>
-            <p className="text-on-surface-variant font-label text-sm">Escrow ID: {dispute.id.toString()}</p>
+            <p className="text-text-tertiary font-label text-sm">Escrow ID: {dispute.id.toString()}</p>
           </div>
           <div className="text-right">
-            <div className="text-xs font-label text-outline uppercase mb-1">
+            <div className="text-[11px] font-label text-text-tertiary uppercase mb-1 tracking-widest">
               Locked Value
             </div>
-            <div className="text-3xl font-extrabold text-secondary font-label">
+            <div className="text-3xl font-extrabold text-emerald font-label">
               {formatEth(dispute.amount)} ETH
             </div>
           </div>
@@ -65,18 +65,18 @@ export default function DisputeDetailPane({ dispute }: DisputeDetailPaneProps) {
         {/* Technical Addresses */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="space-y-4">
-            <div className="text-xs font-label text-outline uppercase tracking-widest flex items-center gap-2">
+            <div className="text-[11px] font-label text-text-tertiary uppercase tracking-widest flex items-center gap-2">
               <User size={14} /> Buyer Address
             </div>
-            <div className="bg-surface-container-highest p-5 rounded-xl font-label text-sm break-all text-primary/80 shadow-inner">
+            <div className="bg-vault-active p-5 rounded-xl font-label text-sm break-all text-indigo/80 border border-border-subtle">
               {dispute.buyer}
             </div>
           </div>
           <div className="space-y-4">
-            <div className="text-xs font-label text-outline uppercase tracking-widest flex items-center gap-2">
+            <div className="text-[11px] font-label text-text-tertiary uppercase tracking-widest flex items-center gap-2">
               <Store size={14} /> Seller Address
             </div>
-            <div className="bg-surface-container-highest p-5 rounded-xl font-label text-sm break-all text-secondary/80 shadow-inner">
+            <div className="bg-vault-active p-5 rounded-xl font-label text-sm break-all text-emerald/80 border border-border-subtle">
               {dispute.seller}
             </div>
           </div>
@@ -84,7 +84,7 @@ export default function DisputeDetailPane({ dispute }: DisputeDetailPaneProps) {
 
         {/* Action Area */}
         <div className="pt-8">
-          <div className="mb-8 text-sm text-on-surface-variant leading-relaxed bg-surface-container/30 p-4 rounded-lg italic">
+          <div className="mb-8 text-sm text-text-secondary leading-relaxed vault-card p-5 italic border-l-2 border-amber/30">
             Execution of a resolution is permanent and written to the blockchain
             ledger immediately. Ensure all evidence has been weighed before
             proceeding.
@@ -93,24 +93,24 @@ export default function DisputeDetailPane({ dispute }: DisputeDetailPaneProps) {
             <button
               onClick={handleResolveBuyer}
               disabled={isWritePending}
-              className="h-20 rounded-2xl btn-resolve-primary text-primary font-bold transition-all duration-300 flex items-center justify-center gap-3 active:scale-[0.98] shadow-xl disabled:opacity-50"
+              className="h-22 rounded-2xl btn-resolve-buyer font-bold text-lg transition-all duration-200 flex items-center justify-center gap-3 disabled:opacity-50"
             >
               {activeResolution === "buyer" ? (
-                <Loader2 className="animate-spin" size={20} />
+                <Loader2 className="animate-spin" size={22} />
               ) : (
-                <Gavel size={20} />
+                <Gavel size={22} />
               )}
               Resolve: Favour Buyer
             </button>
             <button
               onClick={handleResolveSeller}
               disabled={isWritePending}
-              className="h-20 rounded-2xl btn-resolve-secondary text-secondary font-bold transition-all duration-300 flex items-center justify-center gap-3 active:scale-[0.98] shadow-xl disabled:opacity-50"
+              className="h-22 rounded-2xl btn-resolve-seller font-bold text-lg transition-all duration-200 flex items-center justify-center gap-3 disabled:opacity-50"
             >
               {activeResolution === "seller" ? (
-                <Loader2 className="animate-spin" size={20} />
+                <Loader2 className="animate-spin" size={22} />
               ) : (
-                <Scale size={20} />
+                <Scale size={22} />
               )}
               Resolve: Favour Seller
             </button>
@@ -119,7 +119,7 @@ export default function DisputeDetailPane({ dispute }: DisputeDetailPaneProps) {
       </div>
 
       {/* Background Visual Accent */}
-      <div className="absolute top-0 right-0 w-80 h-80 bg-primary/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute top-0 right-0 w-80 h-80 bg-indigo/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
     </div>
   );
 }

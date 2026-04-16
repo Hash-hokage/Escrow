@@ -38,32 +38,32 @@ export default function EscrowCard({ escrow }: EscrowCardProps) {
 
   return (
     <div
-      className={`bg-surface-container-low rounded-3xl p-8 flex flex-col md:flex-row items-center gap-8 transition-all hover:bg-surface-container ${
-        isAwaiting ? "opacity-80" : ""
+      className={`vault-card p-8 flex flex-col md:flex-row items-center gap-8 ${
+        isAwaiting ? "opacity-70" : ""
       }`}
     >
       {/* Left: Details */}
       <div className="flex-1 w-full">
         <div className="flex items-center gap-4 mb-4">
           <StatusBadge state={escrow.currentState} />
-          <span className="text-outline-variant font-label text-xs">
+          <span className="text-text-muted font-label text-xs">
             ID: {formatAddress(escrow.id.toString(16).padStart(8, "0"))}
           </span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4">
           <div>
-            <p className="text-xs text-outline uppercase font-bold tracking-widest mb-1">
+            <p className="text-[11px] text-text-tertiary uppercase font-semibold tracking-widest mb-1">
               Seller
             </p>
-            <p className="font-label text-on-surface">
+            <p className="font-label text-text-primary text-sm">
               {formatAddress(escrow.seller)}
             </p>
           </div>
           <div>
-            <p className="text-xs text-outline uppercase font-bold tracking-widest mb-1">
+            <p className="text-[11px] text-text-tertiary uppercase font-semibold tracking-widest mb-1">
               Arbitrator
             </p>
-            <p className="font-label text-on-surface">
+            <p className="font-label text-text-primary text-sm">
               {formatAddress(escrow.arbitrator)}
             </p>
           </div>
@@ -74,12 +74,12 @@ export default function EscrowCard({ escrow }: EscrowCardProps) {
       <div className="text-center md:text-right w-full md:w-auto">
         <p
           className={`text-3xl font-extrabold font-label mb-1 ${
-            isFunded ? "text-primary" : "text-on-surface-variant"
+            isFunded ? "text-indigo" : "text-text-secondary"
           }`}
         >
           {formatEth(escrow.amount)} ETH
         </p>
-        <p className="text-xs text-outline font-label">
+        <p className="text-xs text-text-tertiary font-label">
           {isAwaiting
             ? "Pending network confirmation"
             : deadlineToTimeLeft(escrow.deadline)}
@@ -98,7 +98,7 @@ export default function EscrowCard({ escrow }: EscrowCardProps) {
               <button
                 onClick={() => handleAction("release")}
                 disabled={isWritePending}
-                className="flex items-center justify-center gap-2 flex-1 md:flex-none signature-gradient text-on-primary-container px-6 py-3 rounded-xl font-bold text-sm active:scale-95 transition-all disabled:opacity-50"
+                className="vault-btn vault-btn-primary flex-1 md:flex-none px-6 py-3 rounded-lg text-sm"
               >
                 {activeAction === "release" ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
@@ -109,7 +109,7 @@ export default function EscrowCard({ escrow }: EscrowCardProps) {
               <button
                 onClick={() => handleAction("dispute")}
                 disabled={isWritePending}
-                className="flex items-center justify-center gap-2 flex-1 md:flex-none bg-tertiary-container text-on-tertiary-container px-6 py-3 rounded-xl font-bold text-sm active:scale-95 transition-all disabled:opacity-50"
+                className="vault-btn vault-btn-danger flex-1 md:flex-none px-6 py-3 rounded-lg text-sm"
               >
                 {activeAction === "dispute" ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
@@ -121,10 +121,10 @@ export default function EscrowCard({ escrow }: EscrowCardProps) {
                 <button
                   onClick={() => handleAction("refund")}
                   disabled={!canRefund || isWritePending}
-                  className={`w-full h-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all ${
+                  className={`vault-btn w-full h-full px-6 py-3 rounded-lg text-sm ${
                     canRefund
-                      ? "bg-tertiary/10 text-tertiary hover:bg-tertiary/20 active:scale-95"
-                      : "opacity-50 cursor-not-allowed border border-tertiary/30 bg-tertiary/5 text-tertiary shadow-[0_0_15px_rgba(255,180,165,0.05)]"
+                      ? "vault-btn-ghost hover:text-scarlet hover:border-scarlet/30"
+                      : "opacity-40 cursor-not-allowed border border-border-subtle bg-vault-active/30 text-text-muted"
                   }`}
                 >
                   {activeAction === "refund" ? (
@@ -134,7 +134,7 @@ export default function EscrowCard({ escrow }: EscrowCardProps) {
                   )}
                 </button>
                 {!canRefund && (
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-surface-bright text-[10px] text-center rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20 shadow-xl">
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-vault-elevated text-[10px] text-center rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20 shadow-vault text-text-secondary">
                     Available after deadline passes
                   </div>
                 )}

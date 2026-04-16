@@ -21,9 +21,17 @@ export default function ConnectWalletButton() {
     <button
       id="connect-wallet-btn"
       onClick={handleClick}
-      className="signature-gradient text-on-primary-container px-6 py-2.5 rounded-full font-bold active:scale-95 duration-150 transition-all"
+      className="vault-btn vault-btn-primary px-5 py-2.5 rounded-full text-sm font-bold"
     >
-      {isConnected && address ? formatAddress(address) : "Connect Wallet"}
+      {isConnected && address ? (
+        <span className="flex items-center gap-2">
+          {/* Liveness Indicator */}
+          <span className="live-dot" />
+          <span className="font-label tracking-tight">{formatAddress(address)}</span>
+        </span>
+      ) : (
+        "Connect Wallet"
+      )}
     </button>
   );
 }

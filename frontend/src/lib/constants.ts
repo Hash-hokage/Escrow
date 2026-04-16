@@ -1,4 +1,4 @@
-import { EscrowState, EscrowTransaction, NavLink, Role } from "./types";
+import { EscrowState, NavLink } from "./types";
 
 /** Navigation links used in TopNav */
 export const NAV_LINKS: NavLink[] = [
@@ -19,36 +19,39 @@ export const STATE_LABELS: Record<EscrowState, string> = {
 };
 
 /**
- * Badge styling per state — maps directly to the Tailwind classes
- * used in the HTML templates.
+ * Badge styling per state — Obsidian Protocol palette.
+ * `dot` is optional; renders a colored indicator circle inside the badge.
  */
 export const STATE_BADGE_STYLES: Record<
   EscrowState,
-  { bg: string; text: string }
+  { bg: string; text: string; dot?: string }
 > = {
   [EscrowState.AWAITING]: {
-    bg: "bg-surface-container-highest",
-    text: "text-on-surface-variant",
+    bg: "bg-vault-active",
+    text: "text-text-secondary",
   },
   [EscrowState.FUNDED]: {
-    bg: "bg-secondary-container",
-    text: "text-on-secondary-container",
+    bg: "bg-indigo/15",
+    text: "text-indigo",
+    dot: "bg-indigo shadow-[0_0_6px_rgba(79,70,229,0.6)]",
   },
   [EscrowState.DISPUTED]: {
-    bg: "bg-tertiary-container/20",
-    text: "text-tertiary",
+    bg: "bg-amber/15",
+    text: "text-amber",
+    dot: "bg-amber shadow-[0_0_6px_rgba(245,158,11,0.6)]",
   },
   [EscrowState.COMPLETE]: {
-    bg: "bg-secondary/20",
-    text: "text-secondary",
+    bg: "bg-emerald/15",
+    text: "text-emerald",
+    dot: "bg-emerald",
   },
   [EscrowState.REIMBURSED]: {
-    bg: "bg-primary/20",
-    text: "text-primary",
+    bg: "bg-scarlet/15",
+    text: "text-scarlet",
   },
   [EscrowState.RESOLVED]: {
-    bg: "bg-primary/20",
-    text: "text-primary",
+    bg: "bg-indigo/10",
+    text: "text-indigo-light",
   },
 };
 

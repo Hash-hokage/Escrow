@@ -32,51 +32,51 @@ export default function JobCard({ escrow }: JobCardProps) {
   };
 
   return (
-    <div className="glass-panel rounded-2xl p-8 transition-all hover:bg-surface-container-high group">
+    <div className="vault-card p-8 group">
       <div className="flex flex-col md:flex-row justify-between gap-6">
         {/* Left: Job details */}
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-4">
             <StatusBadge state={escrow.currentState} />
-            <span className="text-on-surface-variant text-sm mono-text">
+            <span className="text-text-tertiary text-sm mono-text">
               ID: {formatAddress(escrow.id.toString(16).padStart(8, "0"))}
             </span>
           </div>
-          <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+          <h3 className="text-xl font-bold mb-2 text-text-primary group-hover:text-indigo transition-colors duration-200">
             Escrow Contract Engagement
           </h3>
           <div className="grid grid-cols-2 gap-4 my-6">
             <div>
-              <p className="text-xs uppercase tracking-widest text-outline font-bold mb-1">
+              <p className="text-[11px] uppercase tracking-widest text-text-tertiary font-semibold mb-1">
                 Buyer
               </p>
-              <p className="font-label text-on-surface text-sm">
+              <p className="font-label text-text-primary text-sm">
                 {formatAddress(escrow.buyer)}
               </p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-widest text-outline font-bold mb-1">
+              <p className="text-[11px] uppercase tracking-widest text-text-tertiary font-semibold mb-1">
                 Arbitrator
               </p>
-              <p className="font-label text-on-surface text-sm">
+              <p className="font-label text-text-primary text-sm">
                 {formatAddress(escrow.arbitrator)}
               </p>
             </div>
           </div>
           <div className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-10">
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-on-surface-variant mb-1">
+              <p className="text-[10px] uppercase tracking-widest text-text-secondary mb-1">
                 Payout
               </p>
-              <p className="text-3xl font-bold mono-text text-primary">
+              <p className="text-3xl font-bold mono-text text-indigo">
                 {formatEth(escrow.amount)} ETH
               </p>
             </div>
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-on-surface-variant mb-1">
+              <p className="text-[10px] uppercase tracking-widest text-text-secondary mb-1">
                 Deadline Status
               </p>
-              <p className={`text-sm font-semibold ${isDeadlinePassed(escrow.deadline) ? "text-tertiary" : "text-on-surface"}`}>
+              <p className={`text-sm font-semibold ${isDeadlinePassed(escrow.deadline) ? "text-scarlet" : "text-text-primary"}`}>
                 {deadlineToTimeLeft(escrow.deadline)}
               </p>
             </div>
@@ -89,7 +89,7 @@ export default function JobCard({ escrow }: JobCardProps) {
             <button
               onClick={handleRaiseDispute}
               disabled={isWritePending}
-              className="bg-tertiary-container/10 text-tertiary-container hover:bg-tertiary-container hover:text-white transition-all px-4 py-8 md:py-16 rounded-xl font-bold text-sm flex flex-col items-center justify-center gap-3 active:scale-95 disabled:opacity-50 h-full"
+              className="vault-btn vault-btn-danger px-4 py-8 md:py-16 rounded-xl text-sm flex flex-col items-center justify-center gap-3 h-full"
             >
               {isDisputing ? (
                 <Loader2 size={32} className="animate-spin" />

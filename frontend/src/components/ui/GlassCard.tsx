@@ -6,12 +6,12 @@ interface GlassCardProps {
 }
 
 /**
- * Reusable glassmorphism container.
- * Applies the glass-card class from globals.css.
+ * Reusable vault-card container.
+ * Applies the Glass-Vault treatment from the Obsidian Protocol design system.
  */
 export default function GlassCard({ children, className = "" }: GlassCardProps) {
   return (
-    <div className={`glass-card ${className}`}>
+    <div className={`vault-card ${className}`}>
       {children}
     </div>
   );
