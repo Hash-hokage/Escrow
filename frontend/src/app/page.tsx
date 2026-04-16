@@ -70,8 +70,8 @@ export default function DashboardPage() {
             </p>
 
             {/* Search Bar */}
-            <form onSubmit={handleSearch} className="relative max-w-xl group mt-14">
-              <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none text-text-tertiary group-focus-within:text-indigo transition-colors duration-200">
+            <form onSubmit={handleSearch} className="relative flex items-center w-full max-w-2xl p-2 bg-vault border border-border-medium rounded-lg mt-14 group transition-shadow duration-300 focus-within:shadow-vault-glow">
+              <div className="pl-4 text-white/40 group-focus-within:text-indigo transition-colors duration-200">
                 <Search size={22} />
               </div>
               <input
@@ -80,11 +80,11 @@ export default function DashboardPage() {
                 value={searchId}
                 onChange={(e) => setSearchId(e.target.value)}
                 placeholder="Look up escrow by ID..."
-                className="w-full vault-input py-5 pl-14 pr-32 !rounded-xl text-base !font-body"
+                className="w-full bg-transparent border-none focus:ring-0 text-white px-4 placeholder:text-gray-500 font-headline font-medium outline-none"
               />
               <button
                 type="submit"
-                className="absolute right-2 top-2 bottom-2 vault-btn vault-btn-primary px-6 rounded-lg text-sm font-bold"
+                className="vault-btn vault-btn-primary px-8 py-2.5 rounded font-semibold text-[15px] text-white"
               >
                 Search
               </button>
